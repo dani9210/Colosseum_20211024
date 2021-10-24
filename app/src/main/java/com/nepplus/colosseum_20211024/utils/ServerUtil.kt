@@ -7,6 +7,16 @@ import java.io.IOException
 
 class ServerUtil {
 
+//    돌아온 응답을 화면에 전달 : 나 (ServerUtil)에게 발생한 일을 => 화면단에서 대신 처리해달라고 하자. (interface 활용)
+
+    interface JsonResponseHandler {
+
+        fun onResponse( jsonObj: JSONObject )
+
+
+    }
+
+
 //    static 에 대응되는 기능 활용
 
     companion object {
@@ -16,9 +26,10 @@ class ServerUtil {
         val BASE_URL = "http://54.180.52.26"
 
 //         이 {   } 안에 적는 코드들은 다른 클래스에서 ServerUtil.변수 / 기능 활용 가능.
+//        handler : 화면단에서 적어주는, 응답을 어떻게 처리할지 대처 방안이 담긴 인터페이스 변수.
 
 
-        fun postRequestLogin(email: String, pw: String) {
+        fun postRequestLogin(email: String, pw: String, handler: JsonResponseHandler? ) {
 
 
 //             1. 어디로 요청하러 (인터넷 주소 연결 - RUL) 갈것인가?
@@ -66,42 +77,17 @@ class ServerUtil {
                     val bodyString = response.body!!.string()
 
 //                    본문을 그냥 받은 String 그대로 찍으면- > 한글이 깨져서 보임.
-//                    해결책 : String -> JSONObject 변환 -> String으로 재 변환해보며느 한글이 제대로 보임.
+//                    해결책 : String -> JSONObject 변환 -> String으로 재 변환해보면 한글이 제대로 보임.
 
                     val jsonObj = JSONObject(bodyString)
 
                     Log.d("서버응답본문", jsonObj.toString())
 
-
-//                    연습. code 숫자 추출. 로긍니 성공 여부 판단-> 로그로 출력
-
-//                    "code" 숫자 -> 제일 큰 중괄호 ( jsonOBj ) 에 바로 달려있음. -> jsonObj에게 찾아달라고 하자.
+//                 화면단에서, 응답에 대한 처리방안을 제시했다면( handler가 null이 아니라면 - 실체가 있다면)
+//                    처리방법대로 하도록 명령.
 
 
-                    val codeNum = jsonObj.getInt("code")
-
-                    Log.d("로그인코드값",codeNum.toString())
-
-//                    연습. 로그인에 성공했을때만, 성공한 사람의 닉네임을 로그로 출력.
-
-                    if (codeNum == 200) {
-
-//                        data 이름표가 붙은 { } 를 추출하자. => 그 내부를 파고들 수 있다.
-                        val dataObj = jsonObj.getJSONObject("data")
-
-//                        user { } 추출-> 그 내부의 닉네임을 추출하자
-                        val userObj = dataObj.getJSONObject("user")
-
-                        val nickname = userObj.getString("nick_name")
-
-                        Log.d("로그인한사람",nickname)
-
-
-
-
-                    }
-
-
+                    handler?.onResponse(jsonObj)
 
 
                 }
