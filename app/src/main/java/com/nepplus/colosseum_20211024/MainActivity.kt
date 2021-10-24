@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.nepplus.colosseum_20211024.databinding.ActivityMainBinding
+import com.nepplus.colosseum_20211024.utils.ServerUtil
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 
             Log.d("입력이메일", inputEmail)
             Log.d("입력비번",inputPw)
+
+//            서버의 로그인 기능에 전달.
+
+            ServerUtil.postRequestLogin(inputEmail,inputPw)
+
 
 
 

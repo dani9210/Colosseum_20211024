@@ -1,8 +1,8 @@
 package com.nepplus.colosseum_20211024.utils
 
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import android.util.Log
+import okhttp3.*
+import java.io.IOException
 
 class ServerUtil {
 
@@ -10,7 +10,7 @@ class ServerUtil {
 
     companion object {
 
-//        어느 서버로 가는가? BASE_URL을 ㅣㅁ리 변수에담아두자.
+//        어느 서버로 가는가? BASE_URL을 미리 변수에담아두자.
 
         val BASE_URL = "http://54.180.52.26"
 
@@ -46,7 +46,30 @@ class ServerUtil {
 
             val client = OkHttpClient()
 
-            client.newCall(request)
+
+//            OkHttpClient를 이용 -> 서버에 로그인 기능 호출
+//            호툴을 했으면 -> 서버가알려준 결과를 받아서 처리. (response 처리)
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+//                    실패 : 서버 연결 자체를 실패. 아무 응답도 없을때.
+//                    ex. 인터넷 끊김, 서버 접속 불가 등등 물리적 연결 실패.
+//                  이건아님 ->  비번 틀려서 로그인 실패 : 연결은 되었고, 응답도 잘 돌아왔는데 -> 그 내용만 실패.(응답 O)
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+//                    어떤 내용이든, 응답 자체가 잘 들어온 경우, (로그인 성공, 실패 모두 응답 O)
+//                    응답에 포함된 데이터 들 중 => 본문 (body) 을 보자.  (tostring 안댐)
+
+                    val bodyString = response.body!!.string()
+                    Log.d("서버응답본문", bodyString)
+
+
+                }
+
+
+            })
 
 
 
