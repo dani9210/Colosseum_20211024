@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
 
 //          입력한 이메일 / 비번을 데이터 바인딩으로 가져오기.
+
             val inputEmail = binging.emailEdt.text.toString()
             val inputPw = binging.passwordEdt.text.toString()
 
