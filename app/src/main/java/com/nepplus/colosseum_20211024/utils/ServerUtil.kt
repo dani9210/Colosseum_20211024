@@ -2,6 +2,7 @@ package com.nepplus.colosseum_20211024.utils
 
 import android.util.Log
 import okhttp3.*
+import org.json.JSONObject
 import java.io.IOException
 
 class ServerUtil {
@@ -63,14 +64,19 @@ class ServerUtil {
 //                    응답에 포함된 데이터 들 중 => 본문 (body) 을 보자.  (tostring 안댐)
 
                     val bodyString = response.body!!.string()
-                    Log.d("서버응답본문", bodyString)
+
+//                    본문을 그냥 받은 String 그대로 찍으면- > 한글이 깨져서 보임.
+//                    해결책 : String -> JSONObject 변환 -> String으로 재 변환해보며느 한글이 제대로 보임.
+
+                    val jsonObj = JSONObject(bodyString)
+
+                    Log.d("서버응답본문", jsonObj.toString())
 
 
                 }
 
 
             })
-
 
 
         }
