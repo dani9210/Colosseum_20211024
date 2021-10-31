@@ -43,7 +43,20 @@ class SignUpActivity : BaseActivity() {
 
                   if (code == 200) {
 
-//                      회원가입 성공.
+//                      회원가입 성공.=> "~~님, 회원가입을 축하합니다!"
+
+                      val dataObj = jsonObj.getJSONObject("data")
+                      val userObj = dataObj.getJSONObject("user")
+                      val nickname = userObj.getString("nick_name")
+
+                      runOnUiThread{
+
+                          Toast.makeText(mComtext,"{nickname}님, 회원가입을 축하합니다!", Toast.LENGTH_SHORT).show()
+//                          회원가입종료, 로그인 복귀
+                          finish()
+                          
+
+                      }
 
 
                   }
