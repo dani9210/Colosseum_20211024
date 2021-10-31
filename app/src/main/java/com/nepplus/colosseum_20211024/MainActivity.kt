@@ -9,15 +9,19 @@ import com.nepplus.colosseum_20211024.databinding.ActivityMainBinding
 import com.nepplus.colosseum_20211024.utils.ServerUtil
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     lateinit var binging: ActivityMainBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binging = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setupEvents()
+        setValues()
 
+
+    }
+    override fun setupEvents() {
         binging.loginBtn.setOnClickListener {
 
 
@@ -84,5 +88,13 @@ class MainActivity : AppCompatActivity() {
 
 
         }
+
     }
+
+    override fun setValues() {
+
+    }
+
+
+
 }
