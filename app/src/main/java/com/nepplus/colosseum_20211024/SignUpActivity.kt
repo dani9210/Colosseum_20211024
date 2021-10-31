@@ -110,6 +110,17 @@ class SignUpActivity : BaseActivity() {
             }
 
 
+//            입력한 비번이 8글자 이상힌가? 검증
+
+            if (inputPw.length < 8){
+
+                Toast.makeText(mComtext, "비밀번호는 8글자 이상으로 해주세요", Toast.LENGTH_SHORT).show()
+
+                return@setOnClickListener
+
+            }
+
+
 //            입력 데이터를 => 서버의 회원가입 기능에 요청.=> ServerUtil 함수 활용. => 함수가 아직 없으니 추가로 만들자.
 
           ServerUtil.putRequestSignUp(inputEmail,inputPw,inputNickname,object : ServerUtil.JsonResponseHandler{
