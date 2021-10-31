@@ -30,6 +30,9 @@ class MainActivity : BaseActivity() {
 //        연습 - 내 정보 받아오기 소출 =>  닉네임 파싱, 텍스트뷰에 반영
 
 
+        ServerUtil.getRequestMyInfo(mComtext, null)
+
+
 
 
 
