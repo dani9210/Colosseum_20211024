@@ -21,6 +21,7 @@ class MainActivity : BaseActivity() {
 
 
     }
+
     override fun setupEvents() {
         binging.loginBtn.setOnClickListener {
 
@@ -53,7 +54,7 @@ class MainActivity : BaseActivity() {
 
                             runOnUiThread {
                                 Toast.makeText(
-                                    this@MainActivity,
+                                    mComtext,
                                     "로그인 성공",
                                     Toast.LENGTH_SHORT
                                 ).show()
@@ -71,7 +72,7 @@ class MainActivity : BaseActivity() {
 
                             runOnUiThread {
 
-                                Toast.makeText(this@MainActivity,message , Toast.LENGTH_SHORT).show()
+                                Toast.makeText(mComtext,message , Toast.LENGTH_SHORT).show()
                             }
 
 
