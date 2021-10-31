@@ -25,6 +25,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/emailEdt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -57,6 +58,7 @@
 
 
         <EditText
+            android:id="@+id/passwordEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -69,12 +71,14 @@
             android:layout_marginTop="25dp"/>
 
         <EditText
+            android:id="@+id/nicknameEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="한글도 가능"
             android:singleLine="true"/>
 
         <Button
+            android:id="@+id/okBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="가입하기"/>
