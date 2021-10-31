@@ -34,6 +34,7 @@
 
 
             <Button
+                android:id="@+id/checkEmailBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="중복 확인"/>
@@ -45,6 +46,7 @@
 
 
         <TextView
+            android:id="@+id/emailCheckResultTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이메일 중복 검사를 해주세요"/>
