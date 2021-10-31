@@ -25,6 +25,17 @@ class LoginActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+
+        binging.autoLoginCheckBox.setOnCheckedChangeListener { compoundButton, isChecked ->
+
+//            isChecked : 클릭되어서 변경된 최종 상태값 을 알려준다.
+//             ContextUtil에 변경된 값 저장.
+
+            ContextUtil.setAutoLogin(mComtext,isChecked)
+
+
+        }
+
         binging.signUpBtn.setOnClickListener {
 
             val myintent = Intent(mComtext,SignUpActivity::class.java)
@@ -127,6 +138,9 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        binging.autoLoginCheckBox.isChecked = ContextUtil.getAutoLogin(mComtext)
+
 
     }
 
