@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.nepplus.colosseum_20211024.databinding.ActivityLoginBinding
 import com.nepplus.colosseum_20211024.databinding.ActivityMainBinding
 import com.nepplus.colosseum_20211024.utils.ServerUtil
+import org.json.JSONObject
 
 class MainActivity : BaseActivity() {
 
@@ -30,7 +31,26 @@ class MainActivity : BaseActivity() {
 //        연습 - 내 정보 받아오기 소출 =>  닉네임 파싱, 텍스트뷰에 반영
 
 
-        ServerUtil.getRequestMyInfo(mComtext, null)
+        ServerUtil.getRequestMyInfo(mComtext, object : ServerUtil.JsonResponseHandler{
+            override fun onResponse(jsonObj: JSONObject) {
+
+
+                val dataObj = jsonObj.getJSONObject("data")
+                val userObj = dataObj.getJSONObject("user")
+                val nickname = userObj.getString("nick_name")
+
+                runOnUiThread{
+                    binding.nicknameTxt.text = nickname
+
+
+                }
+
+
+
+            }
+
+
+        })
 
 
 
