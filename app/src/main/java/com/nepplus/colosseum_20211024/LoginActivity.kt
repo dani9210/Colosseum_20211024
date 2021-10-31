@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.nepplus.colosseum_20211024.databinding.ActivityLoginBinding
+import com.nepplus.colosseum_20211024.utils.ContextUtil
 import com.nepplus.colosseum_20211024.utils.ServerUtil
 import org.json.JSONObject
 
@@ -76,6 +77,8 @@ class LoginActivity : BaseActivity() {
                             val token = dataObj.getString("token")
 
 //                            Sharedpreferences 활용 저장해두자. => 필요할때 꺼내쓰도록.
+
+                            ContextUtil.setToken(mComtext, token)
 
 
                             runOnUiThread {
