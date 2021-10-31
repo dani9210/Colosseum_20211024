@@ -1,5 +1,6 @@
 package com.nepplus.colosseum_20211024
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,19 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        binging.signUpBtn.setOnClickListener {
+
+            val myintent = Intent(mComtext,SignUpActivity::class.java)
+            startActivity(myintent)
+
+
+
+
+        }
+
+
+
         binging.loginBtn.setOnClickListener {
 
 
