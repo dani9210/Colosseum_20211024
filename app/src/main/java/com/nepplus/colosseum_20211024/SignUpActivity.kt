@@ -14,7 +14,7 @@ import java.util.regex.Pattern
 class SignUpActivity : BaseActivity() {
 
 
-    lateinit var binding : ActivitySignUpBinding
+    lateinit var binding: ActivitySignUpBinding
 
 //    이메일 중복검사 통과 여부 저장 변수.
 
@@ -23,7 +23,7 @@ class SignUpActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_sign_up)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
         setupEvents()
         setValues()
 
@@ -46,39 +46,38 @@ class SignUpActivity : BaseActivity() {
 
             val inputNickname = binding.nickNameEdt.text.toString()
 
-            ServerUtil.getRequestDuplCheck("NICK_NAME",inputNickname, object : ServerUtil.JsonResponseHandler{
-                override fun onResponse(jsonObj: JSONObject) {
+            ServerUtil.getRequestDuplCheck(
+                "NICK_NAME",
+                inputNickname,
+                object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObj: JSONObject) {
 
 
-                    runOnUiThread{
+                        runOnUiThread {
 
 
+                            val code = jsonObj.getInt("code")
 
-                        val code = jsonObj.getInt("code")
+                            if (code == 200) {
 
-                        if ( code == 200) {
-
-                            binding.nicknameCheckResultTxt.text = "사용해도 좋습니다."
-                            isNicknameOk = true
+                                binding.nicknameCheckResultTxt.text = "사용해도 좋습니다."
+                                isNicknameOk = true
 
 
+                            } else {
+
+                                binding.nicknameCheckResultTxt.text = "다른 닉네임을 입력하고, 다시검사해주세요."
+                                isNicknameOk = false
+
+
+                            }
                         }
 
-                        else  {
 
-                            binding.nicknameCheckResultTxt.text = "다른 닉네임을 입력하고, 다시검사해주세요."
-                            isNicknameOk = false
-
-
-                        }
                     }
 
 
-
-                }
-
-
-            })
+                })
 
 
         }
@@ -103,43 +102,52 @@ class SignUpActivity : BaseActivity() {
 
             val inputEmail = binding.emailEdt.text.toString().trim()
 
-            ServerUtil.getRequestDuplCheck("EMAIL",inputEmail, object : ServerUtil.JsonResponseHandler{
-                override fun onResponse(jsonObj: JSONObject) {
+            ServerUtil.getRequestDuplCheck(
+                "EMAIL",
+                inputEmail,
+                object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObj: JSONObject) {
 
-                    val code = jsonObj.getInt("code")
+                        val code = jsonObj.getInt("code")
 
-                    val emailValidation = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                        val emailValidation =
+                            "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
 
-                    val emailPattern = Pattern.matches(emailValidation,inputEmail)
-
-
-
-                    runOnUiThread{
-
-
-
-                        if (code == 200 ) {
-
-
-                            binding.emailCheckResultTxt.text = "사용해도 좋습니다."
-                            isEmailOk = true
+                        val emailPattern = Pattern.matches(emailValidation, inputEmail)
 
 
 
+                        runOnUiThread {
 
-                            if (emailPattern)  {
 
-                                binding.emailCheckResultTxt.text = "사용해도 좋습니다"
+                            if (code == 200) {
 
+
+                                binding.emailCheckResultTxt.text = "사용해도 좋습니다."
                                 isEmailOk = true
 
 
-                            }
 
 
-                            else{
+                                if (emailPattern) {
 
-                                binding.emailCheckResultTxt.text ="이메일 형식으로 입력해주세요."
+                                    binding.emailCheckResultTxt.text = "사용해도 좋습니다"
+
+                                    isEmailOk = true
+
+
+                                } else {
+
+                                    binding.emailCheckResultTxt.text = "이메일 형식으로 입력해주세요."
+                                    isEmailOk = false
+
+
+                                }
+
+
+                            } else {
+
+                                binding.emailCheckResultTxt.text = "다른 이메일을 입력하고, 다시 검사해주세요."
                                 isEmailOk = false
 
 
@@ -148,22 +156,11 @@ class SignUpActivity : BaseActivity() {
 
                         }
 
-                        else  {
-
-                            binding.emailCheckResultTxt.text = "다른 이메일을 입력하고, 다시 검사해주세요."
-                            isEmailOk = false
-
-
-                        }
-
 
                     }
 
 
-                }
-
-
-            })
+                })
 
 
         }
@@ -178,24 +175,21 @@ class SignUpActivity : BaseActivity() {
             val inputNickname = binding.nickNameEdt.text.toString()
 
 
-
 //            입력값들이 괜찮은지 먼저 검사. => 전부 통과해야 회원가입 실행.
-
 
 
 //            도전과제. 구글링 필요. => 입력한 이메일이, 이메일양식이 맞는지?  aaa@bbb.com 등.체크하기
 //            정규 표현식 활용. -> 이메일 양식 검증정규표현식 어떻게 쓸까?
 
 
-
-            if(!isNicknameOk) {
+            if (!isNicknameOk) {
 
                 Toast.makeText(mComtext, "닉네임 검사를 다시 해주세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
 
-            if(!isEmailOk) {
+            if (!isEmailOk) {
 
                 Toast.makeText(mComtext, "이메일 확인을 다시 해주세요", Toast.LENGTH_SHORT).show()
 
@@ -208,7 +202,7 @@ class SignUpActivity : BaseActivity() {
 
 //            입력한 비번이 8글자 이상힌가? 검증
 
-            if (inputPw.length < 8){
+            if (inputPw.length < 8) {
 
                 Toast.makeText(mComtext, "비밀번호는 8글자 이상으로 해주세요", Toast.LENGTH_SHORT).show()
 
@@ -217,64 +211,66 @@ class SignUpActivity : BaseActivity() {
             }
 
 
-
-
 //            입력 데이터를 => 서버의 회원가입 기능에 요청.=> ServerUtil 함수 활용. => 함수가 아직 없으니 추가로 만들자.
 
-          ServerUtil.putRequestSignUp(inputEmail,inputPw,inputNickname,object : ServerUtil.JsonResponseHandler{
-              override fun onResponse(jsonObj: JSONObject) {
+            ServerUtil.putRequestSignUp(
+                inputEmail,
+                inputPw,
+                inputNickname,
+                object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObj: JSONObject) {
 
 //                  jsonObj 분석 -> UI 반영 코드만 작성.
 
 //                  code : 성공(200) / 실패 (그 외) 여부 .
 
-                  val code = jsonObj.getInt("code")
+                        val code = jsonObj.getInt("code")
 
-                  if (code == 200) {
+                        if (code == 200) {
 
 //                      회원가입 성공.=> "~~님, 회원가입을 축하합니다!"
 
-                      val dataObj = jsonObj.getJSONObject("data")
-                      val userObj = dataObj.getJSONObject("user")
-                      val nickname = userObj.getString("nick_name")
+                            val dataObj = jsonObj.getJSONObject("data")
+                            val userObj = dataObj.getJSONObject("user")
+                            val nickname = userObj.getString("nick_name")
 
-                      runOnUiThread{
+                            runOnUiThread {
 
-                          Toast.makeText(mComtext,"${nickname}회원가입을 축하합니다!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    mComtext,
+                                    "${nickname}회원가입을 축하합니다!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
 //                          회원가입종료, 로그인 복귀
-                          finish()
-                          
-
-                      }
+                                finish()
 
 
-                  }
+                            }
 
-                  else {
+
+                        } else {
 
 //                      회원가입 실패. => 왜? message String에 담겨있을 예정.
 
-                      val message = jsonObj.getString("message")
+                            val message = jsonObj.getString("message")
 
-                      runOnUiThread {
+                            runOnUiThread {
 
-                          Toast.makeText(mComtext, message, Toast.LENGTH_SHORT).show()
-
-
-                      }
-
-                  }
+                                Toast.makeText(mComtext, message, Toast.LENGTH_SHORT).show()
 
 
+                            }
 
-              }
+                        }
 
 
-          })
+                    }
+
+
+                })
 
 
         }
-
 
 
     }
@@ -282,7 +278,6 @@ class SignUpActivity : BaseActivity() {
     override fun setValues() {
 
     }
-
 
 
 }

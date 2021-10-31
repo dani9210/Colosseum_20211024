@@ -13,7 +13,7 @@ class ServerUtil {
 
     interface JsonResponseHandler {
 
-        fun onResponse( jsonObj: JSONObject )
+        fun onResponse(jsonObj: JSONObject)
 
 
     }
@@ -31,7 +31,7 @@ class ServerUtil {
 //        handler : 화면단에서 적어주는, 응답을 어떻게 처리할지 대처 방안이 담긴 인터페이스 변수.
 
 
-        fun postRequestLogin(email: String, pw: String, handler: JsonResponseHandler? ) {
+        fun postRequestLogin(email: String, pw: String, handler: JsonResponseHandler?) {
 
 
 //             1. 어디로 요청하러 (인터넷 주소 연결 - RUL) 갈것인가?
@@ -103,14 +103,19 @@ class ServerUtil {
 
 //        회원가입 기능 (PUT방식)
 
-        fun putRequestSignUp(email: String, pw:String,nickname : String,handler: JsonResponseHandler?){
+        fun putRequestSignUp(
+            email: String,
+            pw: String,
+            nickname: String,
+            handler: JsonResponseHandler?
+        ) {
 
             val urlString = "${BASE_URL}/user"
 
             val formData = FormBody.Builder()
-                .add("email",email)
-                .add("password",pw)
-                .add("nick_name",nickname)
+                .add("email", email)
+                .add("password", pw)
+                .add("nick_name", nickname)
                 .build()
 
 
@@ -129,11 +134,10 @@ class ServerUtil {
 
                 override fun onResponse(call: Call, response: Response) {
 
-                    val  bodyString = response.body!!.string()
+                    val bodyString = response.body!!.string()
                     val jsonObj = JSONObject(bodyString)
-                    Log.d("서버응답본문",jsonObj.toString())
+                    Log.d("서버응답본문", jsonObj.toString())
                     handler?.onResponse(jsonObj)
-
 
 
                 }
@@ -142,13 +146,12 @@ class ServerUtil {
             })
 
 
-
         }
 
 
 //        중복 확인 기능 (GET방식)
 
-        fun getRequestDuplCheck(type: String, value : String,handler: JsonResponseHandler?){
+        fun getRequestDuplCheck(type: String, value: String, handler: JsonResponseHandler?) {
 
 //            1. 어디로 가야하는가? GET - query 파라미터 = > 어디로? + 어떤 데이터? 한번에 조합된 형태.
 //               =>  만들때도 같이 만들어야함.
@@ -156,12 +159,12 @@ class ServerUtil {
 
 
             val urlBuilder = "${BASE_URL}/user_check".toHttpUrlOrNull()!!.newBuilder()
-            urlBuilder.addEncodedQueryParameter("type",type)
-            urlBuilder.addEncodedQueryParameter("value",value)
+            urlBuilder.addEncodedQueryParameter("type", type)
+            urlBuilder.addEncodedQueryParameter("value", value)
 
             val urlString = urlBuilder.toString()
 
-            Log.d("최종주소",urlString)
+            Log.d("최종주소", urlString)
 
 
 //            2. 어디로 + 어떤데이터?  완료된상태. -> Request 만들자.
@@ -176,7 +179,7 @@ class ServerUtil {
 //            3. Request 완성 => 서버에 호출 하면된다. Client로 동작.
 
             val client = OkHttpClient()
-            client.newCall(request).enqueue(object : Callback{
+            client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
 
                 }
@@ -185,7 +188,7 @@ class ServerUtil {
 
                     val bodyString = response.body!!.string()
                     val jsonObj = JSONObject(bodyString)
-                    Log.d("서버응답본문",jsonObj.toString())
+                    Log.d("서버응답본문", jsonObj.toString())
                     handler?.onResponse(jsonObj)
 
                 }
@@ -201,10 +204,10 @@ class ServerUtil {
 //        토큰 첨부 API를 실행하는 함수의 재로로, context를 받아오자.
 //        대부분의 서버관련 함수는 context: Context를 재료로 맨앞에 받아두면 편하다.
 
-        fun getRequestMyInfo(context : Context, handler: JsonResponseHandler? ){
+        fun getRequestMyInfo(context: Context, handler: JsonResponseHandler?) {
 
 
-            val urlBuilder  = "${BASE_URL}/user_info".toHttpUrlOrNull()!!.newBuilder()
+            val urlBuilder = "${BASE_URL}/user_info".toHttpUrlOrNull()!!.newBuilder()
 //            urlBuilder.addEncodeQueryParameter()  // 이기능은 쿼리파라미터 첨부 없음
 
             val urlString = urlBuilder.toString()
@@ -212,11 +215,11 @@ class ServerUtil {
             val request = Request.Builder()
                 .url(urlString)
                 .get()
-                .header("X-Http-Token",ContextUtil.getToken(context))
+                .header("X-Http-Token", ContextUtil.getToken(context))
                 .build()
 
             val client = OkHttpClient()
-            client.newCall(request).enqueue(object : Callback{
+            client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
 
                 }
@@ -225,7 +228,7 @@ class ServerUtil {
 
                     val bodyString = response.body!!.string()
                     val jsonObj = JSONObject(bodyString)
-                    Log.d("서버응답본문",jsonObj.toString())
+                    Log.d("서버응답본문", jsonObj.toString())
                     handler?.onResponse(jsonObj)
 
                 }
@@ -234,7 +237,6 @@ class ServerUtil {
             })
 
         }
-
 
 
     }

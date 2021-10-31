@@ -31,17 +31,15 @@ class LoginActivity : BaseActivity() {
 //            isChecked : 클릭되어서 변경된 최종 상태값 을 알려준다.
 //             ContextUtil에 변경된 값 저장.
 
-            ContextUtil.setAutoLogin(mComtext,isChecked)
+            ContextUtil.setAutoLogin(mComtext, isChecked)
 
 
         }
 
         binging.signUpBtn.setOnClickListener {
 
-            val myintent = Intent(mComtext,SignUpActivity::class.java)
+            val myintent = Intent(mComtext, SignUpActivity::class.java)
             startActivity(myintent)
-
-
 
 
         }
@@ -95,20 +93,18 @@ class LoginActivity : BaseActivity() {
                             runOnUiThread {
                                 Toast.makeText(
                                     mComtext,
-                                    "${nickname}님,환영합니다!" ,
+                                    "${nickname}님,환영합니다!",
                                     Toast.LENGTH_SHORT
                                 ).show()
 
-                                val myIntent = Intent(mComtext,MainActivity::class.java)
+                                val myIntent = Intent(mComtext, MainActivity::class.java)
                                 startActivity(myIntent)
                                 finish()
 
                             }
 
 
-                        }
-
-                        else {
+                        } else {
 
 //                            서버가 알려주는 로그인 실패 사유 파싱-> 토스트
 
@@ -117,11 +113,8 @@ class LoginActivity : BaseActivity() {
 
                             runOnUiThread {
 
-                                Toast.makeText(mComtext,message , Toast.LENGTH_SHORT).show()
+                                Toast.makeText(mComtext, message, Toast.LENGTH_SHORT).show()
                             }
-
-
-
 
 
                         }
@@ -143,7 +136,6 @@ class LoginActivity : BaseActivity() {
 
 
     }
-
 
 
 }

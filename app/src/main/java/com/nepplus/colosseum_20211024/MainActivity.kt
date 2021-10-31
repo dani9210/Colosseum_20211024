@@ -11,12 +11,12 @@ import org.json.JSONObject
 class MainActivity : BaseActivity() {
 
 
-    lateinit var binding : ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setupEvents()
         setValues()
     }
@@ -31,7 +31,7 @@ class MainActivity : BaseActivity() {
 //        연습 - 내 정보 받아오기 소출 =>  닉네임 파싱, 텍스트뷰에 반영
 
 
-        ServerUtil.getRequestMyInfo(mComtext, object : ServerUtil.JsonResponseHandler{
+        ServerUtil.getRequestMyInfo(mComtext, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(jsonObj: JSONObject) {
 
 
@@ -39,21 +39,17 @@ class MainActivity : BaseActivity() {
                 val userObj = dataObj.getJSONObject("user")
                 val nickname = userObj.getString("nick_name")
 
-                runOnUiThread{
+                runOnUiThread {
                     binding.nicknameTxt.text = nickname
 
 
                 }
 
 
-
             }
 
 
         })
-
-
-
 
 
     }

@@ -5,11 +5,11 @@ import android.content.Context
 class ContextUtil {
 
 
-    companion object{
+    companion object {
 
         private val prefName = "ColosseumPref"
 
-        private  val TOKEN = "TOKEN"
+        private val TOKEN = "TOKEN"
 
 
 //        자동로그인 체크 여부 저장
@@ -18,18 +18,18 @@ class ContextUtil {
 
 //        자동로그인 - setter / getter 작성
 
-        fun setAutoLogin(context: Context, isAuto : Boolean ){
+        fun setAutoLogin(context: Context, isAuto: Boolean) {
 
-            val pref = context.getSharedPreferences(prefName,Context.MODE_PRIVATE)
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
             pref.edit().putBoolean(AUTO_LOGIN, isAuto).apply()
 
         }
 
 
-        fun getAutoLogin(context: Context) : Boolean {
+        fun getAutoLogin(context: Context): Boolean {
 
-            val pref = context.getSharedPreferences(prefName,Context.MODE_PRIVATE)
-            return pref.getBoolean(AUTO_LOGIN,false)
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            return pref.getBoolean(AUTO_LOGIN, false)
 
 
         }
@@ -37,7 +37,7 @@ class ContextUtil {
 
         // setter - 토큰 저장 기능. SAVE
 
-        fun setToken(context : Context, token : String ){
+        fun setToken(context: Context, token: String) {
 
 //            메모장을 불러내자.
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
@@ -46,13 +46,12 @@ class ContextUtil {
             pref.edit().putString(TOKEN, token).apply()
 
 
-
         }
 
         // getter - 토큰 조회 기능. LOAD
 
 
-        fun  getToken(context: Context) : String{
+        fun getToken(context: Context): String {
 
 //            메모장을 불러내자.
 
@@ -60,7 +59,7 @@ class ContextUtil {
 
 //            불러낸 메모장에서 Token 값 찾아서 리턴. (결과로 지정)
 
-            return pref.getString(TOKEN, "")!!
+            return pref.getString(TOKEN, "")!!    //getString 2번째 재료는 아무것도없을때 결과값
 
 
         }
