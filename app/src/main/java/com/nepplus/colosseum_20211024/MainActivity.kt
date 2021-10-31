@@ -66,10 +66,18 @@ class MainActivity : BaseActivity() {
 
                         if (code == 200) {
 
+//                            응용문제. 로그인 한사람의 닉네임 추출 - >  "~~님, 환영합니다!"
+
+                            val dataObj = jsonObj.getJSONObject("data")
+                            val userObj = dataObj.getJSONObject("user")
+                            val nickname = userObj.getString("nick_name")
+
+
+
                             runOnUiThread {
                                 Toast.makeText(
                                     mComtext,
-                                    "로그인 성공",
+                                    "${nickname}님,환영합니다!" ,
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }

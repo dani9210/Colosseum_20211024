@@ -51,7 +51,7 @@ class SignUpActivity : BaseActivity() {
 
                       runOnUiThread{
 
-                          Toast.makeText(mComtext,"{nickname}님, 회원가입을 축하합니다!", Toast.LENGTH_SHORT).show()
+                          Toast.makeText(mComtext,"${nickname}회원가입을 축하합니다!", Toast.LENGTH_SHORT).show()
 //                          회원가입종료, 로그인 복귀
                           finish()
                           
