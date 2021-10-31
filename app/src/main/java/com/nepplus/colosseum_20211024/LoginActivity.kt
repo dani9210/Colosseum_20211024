@@ -1,22 +1,21 @@
 package com.nepplus.colosseum_20211024
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.nepplus.colosseum_20211024.databinding.ActivityMainBinding
+import com.nepplus.colosseum_20211024.databinding.ActivityLoginBinding
 import com.nepplus.colosseum_20211024.utils.ServerUtil
 import org.json.JSONObject
 
-class MainActivity : BaseActivity() {
+class LoginActivity : BaseActivity() {
 
-    lateinit var binging: ActivityMainBinding
+    lateinit var binging: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binging = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binging = DataBindingUtil.setContentView(this, R.layout.activity_login)
         setupEvents()
         setValues()
 
