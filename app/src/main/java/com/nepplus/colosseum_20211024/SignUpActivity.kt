@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import com.nepplus.colosseum_20211024.databinding.ActivitySignUpBinding
 import com.nepplus.colosseum_20211024.utils.ServerUtil
 import org.json.JSONObject
+import java.util.regex.Pattern
 
 class SignUpActivity : BaseActivity() {
 
@@ -100,21 +101,49 @@ class SignUpActivity : BaseActivity() {
 
         binding.checkEmailBtn.setOnClickListener {
 
-            val inputEmail = binding.emailEdt.text.toString()
+            val inputEmail = binding.emailEdt.text.toString().trim()
 
             ServerUtil.getRequestDuplCheck("EMAIL",inputEmail, object : ServerUtil.JsonResponseHandler{
                 override fun onResponse(jsonObj: JSONObject) {
 
                     val code = jsonObj.getInt("code")
 
+                    val emailValidation = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+
+                    val emailPattern = Pattern.matches(emailValidation,inputEmail)
+
+
+
                     runOnUiThread{
 
-                        if (code == 200) {
+
+
+                        if (code == 200 ) {
 
 
                             binding.emailCheckResultTxt.text = "사용해도 좋습니다."
-
                             isEmailOk = true
+
+
+
+
+                            if (emailPattern)  {
+
+                                binding.emailCheckResultTxt.text = "사용해도 좋습니다"
+
+                                isEmailOk = true
+
+
+                            }
+
+
+                            else{
+
+                                binding.emailCheckResultTxt.text ="이메일 형식으로 입력해주세요."
+                                isEmailOk = false
+
+
+                            }
 
 
                         }
