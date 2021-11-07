@@ -1,7 +1,6 @@
 package com.nepplus.colosseum_20211024
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -38,12 +37,12 @@ class SplashActivity : BaseActivity() {
 //           1. 토큰값이 저장된게 있는가?
 //           2. (차후 작성)   그 토큰이 실제로 유효한가? =>  데이터를 받아올 수 잇는 토큰?
 
-            val myIntnt : Intent
+            val myIntent : Intent
 
-           if ( ContextUtil.getToken(mComtext) != "" ){
+           if ( ContextUtil.getToken(mContext) != "" ){
 
 
-               myIntnt = Intent(mComtext, MainActivity::class.java)
+               myIntent = Intent(mContext, MainActivity::class.java)
 
            }
 //               저장된 토큰이 있다!
@@ -54,13 +53,13 @@ class SplashActivity : BaseActivity() {
 //               저장된 토큰이 "" 이다 =>  없다!
 //               -> 새로 로그인 해야함. -> 로그인 화면으로 넘어가자
 
-               myIntnt = Intent(mComtext, LoginActivity::class.java)
+               myIntent = Intent(mContext, LoginActivity::class.java)
 
 
            }
 
 
-            startActivity(myIntnt)
+            startActivity(myIntent)
 
 
         },   2500  )

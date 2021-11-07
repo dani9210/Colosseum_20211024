@@ -1,8 +1,6 @@
 package com.nepplus.colosseum_20211024
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
@@ -184,14 +182,14 @@ class SignUpActivity : BaseActivity() {
 
             if (!isNicknameOk) {
 
-                Toast.makeText(mComtext, "닉네임 검사를 다시 해주세요", Toast.LENGTH_SHORT).show()
+                Toast.makeText(mContext, "닉네임 검사를 다시 해주세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
 
             if (!isEmailOk) {
 
-                Toast.makeText(mComtext, "이메일 확인을 다시 해주세요", Toast.LENGTH_SHORT).show()
+                Toast.makeText(mContext, "이메일 확인을 다시 해주세요", Toast.LENGTH_SHORT).show()
 
 //                return : 원래는 함수의 결과를 지정하기 위한 용도.
 //                응용 : 결과 뒤로의 함수 내용은 실행되니 않는다. => 이 함수를 강제 종료 시키는 기능.
@@ -204,7 +202,7 @@ class SignUpActivity : BaseActivity() {
 
             if (inputPw.length < 8) {
 
-                Toast.makeText(mComtext, "비밀번호는 8글자 이상으로 해주세요", Toast.LENGTH_SHORT).show()
+                Toast.makeText(mContext, "비밀번호는 8글자 이상으로 해주세요", Toast.LENGTH_SHORT).show()
 
                 return@setOnClickListener
 
@@ -237,7 +235,7 @@ class SignUpActivity : BaseActivity() {
                             runOnUiThread {
 
                                 Toast.makeText(
-                                    mComtext,
+                                    mContext,
                                     "${nickname}회원가입을 축하합니다!",
                                     Toast.LENGTH_SHORT
                                 ).show()
@@ -256,7 +254,7 @@ class SignUpActivity : BaseActivity() {
 
                             runOnUiThread {
 
-                                Toast.makeText(mComtext, message, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
 
 
                             }

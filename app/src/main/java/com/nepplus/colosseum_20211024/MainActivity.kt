@@ -1,11 +1,10 @@
 package com.nepplus.colosseum_20211024
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.nepplus.colosseum_20211024.adapters.TopicAdapter
-import com.nepplus.colosseum_20211024.databinding.ActivityLoginBinding
 import com.nepplus.colosseum_20211024.databinding.ActivityMainBinding
 import com.nepplus.colosseum_20211024.datas.TopicData
 import com.nepplus.colosseum_20211024.utils.ServerUtil
@@ -31,6 +30,26 @@ class MainActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        binding.logoutBtn.setOnClickListener {
+
+//            로그아웃 구현 => 진짜 로그아웃 ?
+
+            val alert = AlertDialog.Builder(mContext)
+            alert.setTitle("로그아웃")
+            alert.setMessage("정말 로그아웃 하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+
+//                확인 눌리면 할 일
+
+            })
+
+            alert.setNegativeButton("취소",null)
+            alert.show()
+
+
+        }
+
+
     }
 
     override fun setValues() {
@@ -40,7 +59,7 @@ class MainActivity : BaseActivity() {
         getTopicListFromServer()
 
 
-        mTopicAdapter = TopicAdapter(mComtext,R.layout.topic_list_item, mTopicList)
+        mTopicAdapter = TopicAdapter(mContext,R.layout.topic_list_item, mTopicList)
         binding.topicListView.adapter = mTopicAdapter
 
 
@@ -51,7 +70,7 @@ class MainActivity : BaseActivity() {
 
     fun getTopicListFromServer() {
 
-        ServerUtil.getRequestMainInfo(mComtext, object : ServerUtil.JsonResponseHandler{
+        ServerUtil.getRequestMainInfo(mContext, object : ServerUtil.JsonResponseHandler{
             override fun onResponse(jsonObj: JSONObject) {
 
 
