@@ -42,6 +42,9 @@ class ViewTopicDetailActivity : BaseActivity() {
 
         Glide.with(mContext).load(mTopicData.imageURL).into(binding.topicImg)
 
+
+        binding.replyCountTxt.text = "현재 의견 : ${mTopicData.replyCount}개"
+
         getTopicDetailFromServer()
 
         mReplyAdapter = ReplyAdapter(mContext,R.layout.reply_list_item,mReplyList)
@@ -81,6 +84,7 @@ class ViewTopicDetailActivity : BaseActivity() {
                     val replyData = ReplyData( )
                     replyData.id = replyObj.getInt("id")
                     replyData.content = replyObj.getString("content")
+//                    댓글목록으로 추가
 
                     mReplyList.add(replyData)
 
