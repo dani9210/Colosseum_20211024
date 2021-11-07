@@ -1,6 +1,5 @@
 package com.nepplus.colosseum_20211024
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
@@ -40,11 +39,14 @@ class ViewTopicDetailActivity : BaseActivity() {
             ServerUtil.postrequestVote(mContext,mTopicData.sideList[0].id,object : ServerUtil.JsonResponseHandler{
                 override fun onResponse(jsonObj: JSONObject) {
 
+//                    새로 토론 상태 불러오기
+
+                    getTopicDetailFromServer()
+
                 }
 
 
             })
-
 
 
     }
@@ -58,16 +60,16 @@ class ViewTopicDetailActivity : BaseActivity() {
                 override fun onResponse(jsonObj: JSONObject) {
 
 
-                }
+                    getTopicDetailFromServer()
 
+
+                }
 
 
                 })
 
 
-
             }
-
 
         }
 
@@ -117,7 +119,18 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 //                topicObj (JSONObject) 를 새 TopicData로 파싱 => 최신정보 반영
 
-                mTopicData = TopicData.getTopicDataFromJson(topicObj)
+                mTopicData = TopicData.getTopicDataFromJSON(topicObj)
+
+//                새 mTopicData에 들어있는 데이터를 UI에 다시 반영.
+                runOnUiThread{
+
+
+                    refreshUI()
+
+
+
+                }
+
 
                 val  repliesArr = topicObj.getJSONArray("replies")
 
@@ -157,6 +170,16 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 
         })
+
+
+
+    }
+
+    fun  refreshUI()  {
+
+//        득표 수 등은 자주 변경되는 데이터.
+        binding.firstSideVoteCountTxt.text = "${mTopicData.sideList[0].voteCount}표"
+        binding.secondSideVoteCountTxt.text = "${mTopicData.sideList[1].voteCount}표"
 
 
 

@@ -36,7 +36,7 @@ class TopicData (
 
 
 
-        fun getTopicDataFromJson( jsonObj:JSONObject ) : TopicData{
+        fun getTopicDataFromJSON(jsonObj:JSONObject ) : TopicData{
 
             val topicData = TopicData()
 
