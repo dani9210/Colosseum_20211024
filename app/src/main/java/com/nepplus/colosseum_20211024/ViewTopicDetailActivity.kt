@@ -48,6 +48,10 @@ class ViewTopicDetailActivity : BaseActivity() {
         binding.firstSideTitle.text = mTopicData.sideList[0].title
         binding.SecondSideTitle.text = mTopicData.sideList[1].title
 
+
+        binding.firstSideVoteCountTxt.text = "${mTopicData.sideList[0].voteCount}표"
+        binding.secondSideVoteCountTxt.text = "${mTopicData.sideList[1].voteCount}표"
+
         getTopicDetailFromServer()
 
         mReplyAdapter = ReplyAdapter(mContext,R.layout.reply_list_item,mReplyList)
