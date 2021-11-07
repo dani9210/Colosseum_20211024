@@ -32,7 +32,7 @@
                 android:background="#80000000"/>
 
             <TextView
-                android:id="@+id/"
+                android:id="@+id/topicTitleTxt"
                 android:layout_gravity="center"
                 android:textSize="20sp"
                 android:textColor="@color/white"
