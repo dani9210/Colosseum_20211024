@@ -51,21 +51,63 @@
                     android:text="토론 주제 자리"/>
 
 
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center">
+
+
+                    <TextView
+                        android:id="@+id/replyCountTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="현재 의견 : 4개"
+                        android:textColor="@color/white"/>
+
+
+
+                </LinearLayout>
+
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="5dp"
+                android:gravity="center"
                 android:layout_gravity="center">
 
 
-                <TextView
-                    android:id="@+id/firstSideTitle"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="첫 진영"
-                    android:textSize="17sp"
-                    android:textColor="@color/white"/>
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/firstSideTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="첫 진영"
+                        android:textSize="17sp"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/firstSideVoteCountTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0표"
+                        android:textColor="@color/white"/>
+
+
+
+
+                </LinearLayout>
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -73,37 +115,43 @@
                     android:text="Vs."
                     android:textSize="17sp"
                     android:textColor="@color/white"/>
-                <TextView
-                    android:id="@+id/SecondSideTitle"
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="둘째 진영"
-                    android:textSize="17sp"
-                    android:textColor="@color/white"/>
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/SecondSideTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="둘째 진영"
+                        android:textSize="17sp"
+                        android:textColor="@color/white"/>
+
+
+                    <TextView
+                        android:id="@+id/secondSideVoteCountTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0표"
+                        android:textColor="@color/white"/>
+
+
+
+
+
+
+                </LinearLayout>
 
 
 
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_gravity="center">
 
-
-                <TextView
-                    android:id="@+id/replyCountTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="현재 의견 : 4개"
-                    android:textColor="@color/white"/>
-
-
-
-            </LinearLayout>
 
 
 
