@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
+import com.nepplus.colosseum_20211024.adapters.TopicAdapter
 import com.nepplus.colosseum_20211024.databinding.ActivityLoginBinding
 import com.nepplus.colosseum_20211024.databinding.ActivityMainBinding
 import com.nepplus.colosseum_20211024.datas.TopicData
@@ -14,6 +15,8 @@ class MainActivity : BaseActivity() {
 
 
     lateinit var binding: ActivityMainBinding
+
+    lateinit var mTopicAdapter: TopicAdapter
 
     val mTopicList = ArrayList<TopicData>()
 
@@ -35,6 +38,10 @@ class MainActivity : BaseActivity() {
 //        /v2/main_/main_info API가 토론 주제 목록을 내려줌.
 //        서버 호출 => 파싱해서, mTopicList를 채워주자.
         getTopicListFromServer()
+
+
+        mTopicAdapter = TopicAdapter(mComtext,R.layout.topic_list_item, mTopicList)
+        binding.topicListView.adapter = mTopicAdapter
 
 
 
