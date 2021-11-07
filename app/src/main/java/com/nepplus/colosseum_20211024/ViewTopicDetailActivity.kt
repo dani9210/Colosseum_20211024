@@ -64,6 +64,10 @@ class ViewTopicDetailActivity : BaseActivity() {
                 val dataobj = jsonObj.getJSONObject("data")
                 val topicObj = dataobj.getJSONObject("topic")
 
+//                topicObj (JSONObject) 를 새 TopicData로 파싱 => 최신정보 반영
+
+                mTopicData = TopicData.getTopicDataFromJson(topicObj)
+
                 val  repliesArr = topicObj.getJSONArray("replies")
 
                 for ( i in 0 until repliesArr.length()) {
