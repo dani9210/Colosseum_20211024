@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.nepplus.colosseum_20211024.databinding.ActivityViewTopicDetailBinding
 import com.nepplus.colosseum_20211024.datas.TopicData
+import com.nepplus.colosseum_20211024.utils.ServerUtil
 
 class ViewTopicDetailActivity : BaseActivity() {
 
@@ -34,8 +35,21 @@ class ViewTopicDetailActivity : BaseActivity() {
 
         Glide.with(mContext).load(mTopicData.imageURL).into(binding.topicImg)
 
+        getTopicDetailFromServer()
+
 
 
 
     }
+
+
+    fun getTopicDetailFromServer(){
+
+        ServerUtil.getRequestTopicDetail(mContext,mTopicData.id, "NEW", object : ServerUtil.JsonResponseHandler)
+
+
+
+    }
+
+
 }
