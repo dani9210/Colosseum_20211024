@@ -108,7 +108,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 
     fun getTopicDetailFromServer(){
 
-        ServerUtil.getRequestTopicDetail(mContext, mTopicData.id,"New", object : ServerUtil.JsonResponseHandler {
+        ServerUtil.getRequestTopicDetail(mContext, mTopicData.id,"NEW", object : ServerUtil.JsonResponseHandler {
 
             override fun onResponse (jsonObj : JSONObject)  {
 
