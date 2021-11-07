@@ -31,7 +31,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        binding.firstSideVoteCountTxt.setOnClickListener {
+        binding.voteToFirstSideBtn.setOnClickListener {
 
 
 //            첫번째 진영에 투표 => 새로 투표 현황 받아서 ->  UI 반영
@@ -52,7 +52,7 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
 
-        binding.SecondSideTitle.setOnClickListener {
+        binding.voteToSecondSideBtn.setOnClickListener {
 
 
 
