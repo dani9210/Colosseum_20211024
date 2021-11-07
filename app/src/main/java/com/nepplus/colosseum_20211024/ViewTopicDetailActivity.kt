@@ -85,11 +85,12 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 //                리스트뷰의 목록에 변경 => 어댑터 새로고침(UI 변경)
 
-                runOnUiThread{
+                     runOnUiThread {
 
-                    mReplyAdapter.notifyDataSetChanged()
+                         mReplyAdapter.notifyDataSetChanged()
+                     }
 
-                }
+
 
 
 
