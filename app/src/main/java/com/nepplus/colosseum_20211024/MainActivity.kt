@@ -40,8 +40,13 @@ class MainActivity : BaseActivity() {
 
             val clickedTopic = mTopicList[position]
 
-            Toast.makeText(mContext, clickedTopic.title, Toast.LENGTH_SHORT).show()
+//            Toast.makeText(mContext, clickedTopic.title, Toast.LENGTH_SHORT).show()
 
+//            실제 - 클릭한 주제 상세보기 => 주제 데이터를 들고 이동.
+
+            val myIntent = Intent(mContext, ViewTopicDetailActivity::class.java)
+            myIntent.putExtra("topic",clickedTopic)
+            startActivity(myIntent)
 
 
 

@@ -1,9 +1,11 @@
 package com.nepplus.colosseum_20211024.datas
 
+import java.io.Serializable
+
 class TopicData (
     var id: Int,
     var title: String,
-    var imageURL: String){
+    var imageURL: String): Serializable {
 
 
 //    토픽데이터 만들때는 빈 괄호 TopicDta() 형태도 지원하자.

@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.nepplus.colosseum_20211024.databinding.ActivityViewTopicDetailBinding
+import com.nepplus.colosseum_20211024.datas.TopicData
 
 class ViewTopicDetailActivity : BaseActivity() {
 
     lateinit var binding: ActivityViewTopicDetailBinding
+    lateinit var mTopicData : TopicData
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +26,9 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        mTopicData = intent.getSerializableExtra("topic") as TopicData
+
 
     }
 }
