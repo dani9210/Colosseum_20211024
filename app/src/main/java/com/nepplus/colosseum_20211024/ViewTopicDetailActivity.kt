@@ -103,10 +103,6 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 
 
-
-
-
-
             }
 
 

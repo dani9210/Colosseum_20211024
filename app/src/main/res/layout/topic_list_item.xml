@@ -48,30 +48,34 @@
 
 
 
-
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center">
-
-
-
-
-            <TextView
-                android:id="@+id/replyCountTxt"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="현재 의견 : 4개"
-                android:textColor="@color/white"/>
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center">
+
+
+
+
+                <TextView
+                    android:id="@+id/replyCountTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="현재 의견 : 4개"
+                    android:textColor="@color/white"/>
+
+
+
+            </LinearLayout>
+
+
+
 
 
 
         </LinearLayout>
+
 
 
 
