@@ -1,5 +1,6 @@
 package com.nepplus.colosseum_20211024
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
@@ -30,6 +31,15 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 
     override fun setupEvents() {
+
+
+        binding.addReplyBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext,EditReplyActivity::class.java)
+            startActivity(myIntent)
+
+
+        }
 
         binding.voteToFirstSideBtn.setOnClickListener {
 
