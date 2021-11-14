@@ -46,6 +46,18 @@ class ViewReplyDetailActivity : BaseActivity() {
 
                     getReplyDetailFromServer()
 
+//                    부가작업
+//                    1) 입력 완료시 -> 입력칸 비워주기
+
+                    binding.contentEdt.setText("")
+
+//                    2) 새로 단 답글이 안보임 -> 리스트뷰가 맨밑으로 이동하지 않아서. 손으로내려냐 보임.
+//                      => 코드로 밑으로 끌어내려주자
+//                      => 서버에 다녀오기 전에 끌어내려줌.
+
+
+
+
                 }
 
 
@@ -102,8 +114,10 @@ class ViewReplyDetailActivity : BaseActivity() {
                 runOnUiThread {
 
                     mReREplyadapter.notifyDataSetChanged()
+                    binding.replyListView.smoothScrollToPosition(maReReplayList.size - 1)
 
                 }
+
 
 
             }
