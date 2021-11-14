@@ -1,5 +1,7 @@
 package com.nepplus.colosseum_20211024
 
+import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -8,6 +10,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
     val mContext = this
+
+//    onCreate의 내용을 수정해서 (재정의해서) 사용 -> override
+
 
 
     abstract fun  setupEvents()
@@ -30,6 +35,26 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+//        여기에 적는 코드? -> 자식 (다른화면)들의 super.onCreate => 실행되는 내용
+
+//        모든 화면이 만들어질때 -> 액션바가 있다면 -> 액션바 커스터마이징 기능 실행
+
+        supportActionBar?.let {
+
+            setCustomActionBar()
+
+        }
+
+
+
+        }
+
+
 
 
 
