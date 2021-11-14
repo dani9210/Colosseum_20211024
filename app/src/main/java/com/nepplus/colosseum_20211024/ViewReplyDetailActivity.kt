@@ -33,6 +33,24 @@ class ViewReplyDetailActivity : BaseActivity() {
 
 
     override fun setupEvents() {
+        //            답글적고 - > 확인누르면 답글등록
+
+        binding.okBtn.setOnClickListener {
+
+            val inputContent = binding.contentEdt.text.toString()
+
+            ServerUtil.postRequestWriteReReply(mContext,inputContent,mReplyData.id,object :ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObj: JSONObject) {
+
+                }
+
+
+            })
+
+
+
+
+        }
 
     }
 
