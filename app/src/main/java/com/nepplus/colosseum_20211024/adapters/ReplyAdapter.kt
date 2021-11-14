@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide
 import com.nepplus.colosseum_20211024.R
 import com.nepplus.colosseum_20211024.datas.ReplyData
 import com.nepplus.colosseum_20211024.datas.TopicData
+import com.nepplus.colosseum_20211024.utils.ServerUtil
+import org.json.JSONObject
 
 class ReplyAdapter(
     val mContext: Context,
@@ -40,11 +42,32 @@ class ReplyAdapter(
         val likeCountTxt = row.findViewById<TextView>(R.id.likeCountTxt)
         val dislikeCountTxt = row.findViewById<TextView>(R.id.dislikeCountTxt)
 
+
         replyCountTxt.text = "답글 : ${data.replyCount}개"
         likeCountTxt.text = "좋아요: ${data.likeCount}개"
         dislikeCountTxt.text = "싫어요 ${data.dislikeCount}개"
 
         contentTxt.text = data.content
+
+
+//        좋아요 텍스트뷰 클릭 > 이 댓글에 대해 좋아요 호출
+
+        likeCountTxt.setOnClickListener {
+
+            ServerUtil.postRequestReplyLikeOrDislike(mContext,data.id,true,object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObj: JSONObject) {
+
+//                    좋아요 찍고 돌아오면 할일
+
+
+
+                }
+
+
+            })
+
+
+        }
 
 
 
