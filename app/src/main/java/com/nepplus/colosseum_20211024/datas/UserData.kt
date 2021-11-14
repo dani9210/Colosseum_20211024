@@ -1,8 +1,9 @@
 package com.nepplus.colosseum_20211024.datas
 
 import org.json.JSONObject
+import java.io.Serializable
 
-class UserData {
+class UserData : Serializable {
 
     var id = 0
     var email = ""

@@ -1,12 +1,14 @@
 package com.nepplus.colosseum_20211024.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.nepplus.colosseum_20211024.R
+import com.nepplus.colosseum_20211024.ViewReplyDetailActivity
 import com.nepplus.colosseum_20211024.ViewTopicDetailActivity
 import com.nepplus.colosseum_20211024.datas.ReplyData
 import com.nepplus.colosseum_20211024.utils.ServerUtil
@@ -150,6 +152,15 @@ class ReplyAdapter(
         }
 
 
+
+        replyCountTxt.setOnClickListener {
+
+            val myIntent = Intent( mContext, ViewReplyDetailActivity::class.java )
+            myIntent.putExtra("reply",data)
+            mContext.startActivity(myIntent)
+
+
+        }
 
 
         return row
