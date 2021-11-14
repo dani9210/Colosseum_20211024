@@ -70,6 +70,27 @@ class ReplyAdapter(
         }
 
 
+//        싫어요 찍기 구현
+
+
+        dislikeCountTxt.setOnClickListener {
+
+            ServerUtil.postRequestReplyLikeOrDislike(mContext,data.id,false,object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObj: JSONObject) {
+
+//                    싫어요 찍고 돌아오면 할일
+
+
+
+                }
+
+
+            })
+
+
+        }
+
+
 
 
         return row
