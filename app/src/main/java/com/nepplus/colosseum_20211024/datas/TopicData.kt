@@ -14,7 +14,11 @@ class TopicData (
 
 //    선택 진영 " 목록"
 
-    var sideList = ArrayList<SideData>()
+    val sideList = ArrayList<SideData>()
+
+//    내가 선택한 진영
+
+    var mySide : SideData? = null
 
 
 
@@ -59,6 +63,20 @@ class TopicData (
 
 
             }
+
+//            내가 선택한 진영 파싱
+//             -> 아직 투표를 안했다면? 진영도 아직 없다. 서버도 null로 내려준다.
+
+//            null인지 아닌지를 확인해서 파싱 진행. => null이 아닐때 파싱
+
+            if (!jsonObj.isNull("my_side")){
+
+                val mySideObj = jsonObj.getJSONObject("my_side")
+                topicData.mySide = SideData.getSideDataFromJSOn(mySideObj)
+
+            }
+
+//            투표를 안했다면?  myside 변수에 null 이 들어있다.
 
 
             return topicData
