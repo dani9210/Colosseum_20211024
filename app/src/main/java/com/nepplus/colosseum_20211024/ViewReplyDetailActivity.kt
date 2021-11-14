@@ -52,6 +52,21 @@ class ViewReplyDetailActivity : BaseActivity() {
         ServerUtil.getRequestReplyDetail(mContext,mReplyData.id, object : ServerUtil.JsonResponseHandler{
             override fun onResponse(jsonObj: JSONObject) {
 
+                val dataObj = jsonObj.getJSONObject("data")
+                val replyObj = dataObj.getJSONObject("reply")
+                val repliesArr = replyObj.getJSONArray("replies")
+
+                for(i in 0 until repliesArr.length()){
+
+//                    위치에 맞는 JSONObject  {  }추출 -> ReplyData로 변환 -> 대댓글목록에 추가
+
+                    maReReplayList.add( ReplyData.getReplayDataFromJson( repliesArr.getJSONObject(i)))
+
+
+
+                }
+
+
             }
 
 
