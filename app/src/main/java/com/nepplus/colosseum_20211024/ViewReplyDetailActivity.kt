@@ -16,7 +16,7 @@ class ViewReplyDetailActivity : BaseActivity() {
     lateinit var mReplyData : ReplyData
 
 
-    val maReReplayList = ArrayList<ReplyData>()
+    val mReReplayList = ArrayList<ReplyData>()
 
     lateinit var mReReplyAdapter : ReReplyAdapter
 
@@ -80,7 +80,7 @@ class ViewReplyDetailActivity : BaseActivity() {
 
         getReplyDetailFromServer()
 
-        mReReplyAdapter = ReReplyAdapter(mContext,R.layout.re_reply_list_item,maReReplayList)
+        mReReplyAdapter = ReReplyAdapter(mContext,R.layout.re_reply_list_item,mReReplayList)
         binding.replyListView.adapter = mReReplyAdapter
 
 
@@ -97,13 +97,13 @@ class ViewReplyDetailActivity : BaseActivity() {
                 val replyObj = dataObj.getJSONObject("reply")
                 val repliesArr = replyObj.getJSONArray("replies")
 
-                mReReplyAdapter.clear()
+                mReReplayList.clear()
 
                 for(i in 0 until repliesArr.length()){
 
 //                    위치에 맞는 JSONObject  {  }추출 -> ReplyData로 변환 -> 대댓글목록에 추가
 
-                    maReReplayList.add( ReplyData.getReplayDataFromJson( repliesArr.getJSONObject(i)))
+                    mReReplayList.add( ReplyData.getReplayDataFromJson( repliesArr.getJSONObject(i)))
 
 
 
@@ -113,7 +113,7 @@ class ViewReplyDetailActivity : BaseActivity() {
                 runOnUiThread {
 
                     mReReplyAdapter.notifyDataSetChanged()
-                    binding.replyListView.smoothScrollToPosition(maReReplayList.size - 1)
+                    binding.replyListView.smoothScrollToPosition(mReReplayList.size - 1)
 
                 }
 
