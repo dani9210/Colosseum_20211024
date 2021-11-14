@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.nepplus.colosseum_20211024.databinding.ActivityViewReplyDetailBinding
 import com.nepplus.colosseum_20211024.datas.ReplyData
+import com.nepplus.colosseum_20211024.utils.ServerUtil
+import org.json.JSONObject
 
 
 class ViewReplyDetailActivity : BaseActivity() {
@@ -12,6 +14,9 @@ class ViewReplyDetailActivity : BaseActivity() {
     lateinit var binding : ActivityViewReplyDetailBinding
 
     lateinit var mReplyData : ReplyData
+
+
+    val maReReplayList = ArrayList<ReplyData>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +45,21 @@ class ViewReplyDetailActivity : BaseActivity() {
 
 
     }
+
+
+    fun getReplyDetailFromServer() {
+
+        ServerUtil.getRequestReplyDetail(mContext,mReplyData.id, object : ServerUtil.JsonResponseHandler{
+            override fun onResponse(jsonObj: JSONObject) {
+
+            }
+
+
+        })
+
+
+    }
+
 
 
 }
