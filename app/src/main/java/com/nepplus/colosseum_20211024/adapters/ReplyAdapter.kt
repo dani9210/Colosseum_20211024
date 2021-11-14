@@ -91,6 +91,10 @@ class ReplyAdapter(
 
         selectedSideTitleTxt.text = "(${data.selectedSide.title})"
 
+//        작성자 닉네임 보여주기
+
+
+
 
 //        좋아요 텍스트뷰 클릭 > 이 댓글에 대해 좋아요 호출
 

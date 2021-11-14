@@ -46,12 +46,17 @@ class ReplyData(
 
             val selectedSideObj = jsonObj.getJSONObject("selected_side")
 
+
 //            진영 정보를 파싱하기에 적당한 JSONObject 추출 -> SideData의 변환기능에 넣어보자
 
             replyData.selectedSide = SideData.getSideDataFromJSOn(selectedSideObj)
 
 
+//     적은 사람도 파싱
 
+
+            val userobj = jsonObj.getJSONObject("user")
+            replyData.user = UserData.getUserdataFronJson(userobj)
 
             return replyData
 
