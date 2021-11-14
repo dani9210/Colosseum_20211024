@@ -1,6 +1,5 @@
 package com.nepplus.colosseum_20211024
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.nepplus.colosseum_20211024.adapters.ReReplyAdapter
@@ -19,7 +18,7 @@ class ViewReplyDetailActivity : BaseActivity() {
 
     val maReReplayList = ArrayList<ReplyData>()
 
-    lateinit var mReREplyadapter : ReReplyAdapter
+    lateinit var mReReplyAdapter : ReReplyAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,8 +80,8 @@ class ViewReplyDetailActivity : BaseActivity() {
 
         getReplyDetailFromServer()
 
-        mReREplyadapter = ReReplyAdapter(mContext,R.layout.re_reply_list_item,maReReplayList)
-        binding.replyListView.adapter = mReREplyadapter
+        mReReplyAdapter = ReReplyAdapter(mContext,R.layout.re_reply_list_item,maReReplayList)
+        binding.replyListView.adapter = mReReplyAdapter
 
 
 
@@ -98,7 +97,7 @@ class ViewReplyDetailActivity : BaseActivity() {
                 val replyObj = dataObj.getJSONObject("reply")
                 val repliesArr = replyObj.getJSONArray("replies")
 
-                mReREplyadapter.clear()
+                mReReplyAdapter.clear()
 
                 for(i in 0 until repliesArr.length()){
 
@@ -113,7 +112,7 @@ class ViewReplyDetailActivity : BaseActivity() {
 
                 runOnUiThread {
 
-                    mReREplyadapter.notifyDataSetChanged()
+                    mReReplyAdapter.notifyDataSetChanged()
                     binding.replyListView.smoothScrollToPosition(maReReplayList.size - 1)
 
                 }
