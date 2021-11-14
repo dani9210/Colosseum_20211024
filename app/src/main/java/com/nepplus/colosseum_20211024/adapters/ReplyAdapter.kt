@@ -51,14 +51,12 @@ class ReplyAdapter(
 
 //        내가 좋아요 찍었는지? -> 글씨 색 빨간색(#FF0000). 안찍었다면? 회색(#A0A0A0)
 
-        if (data.myLike)  {
+        if (data.myLike) {
 
             likeCountTxt.setTextColor(mContext.resources.getColor(R.color.red))
 
 
-        }
-
-        else {
+        } else {
 
 
             likeCountTxt.setTextColor(mContext.resources.getColor(R.color.gray))
@@ -69,15 +67,12 @@ class ReplyAdapter(
 
 //        실헝요 여부에 따른 텍스트 컬러 변경
 
-        if (data.myDislike){
-
+        if (data.myDislike) {
 
 
             dislikeCountTxt.setTextColor(mContext.resources.getColor(R.color.blue))
 
-        }
-
-        else{
+        } else {
 
             dislikeCountTxt.setTextColor(mContext.resources.getColor(R.color.gray))
 
