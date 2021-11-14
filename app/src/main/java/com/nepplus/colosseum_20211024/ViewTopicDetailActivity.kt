@@ -30,6 +30,17 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
 
+    override fun onResume() {
+        super.onResume()
+
+//        댓글 목록을 화면이 보여질때마다 다시 새로고침.
+
+        getTopicDetailFromServer()
+
+
+    }
+
+
     override fun setupEvents() {
 
 
@@ -127,6 +138,8 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
 
+
+
     fun getTopicDetailFromServer() {
 
         ServerUtil.getRequestTopicDetail(
@@ -149,9 +162,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 //                새 mTopicData에 들어있는 데이터를 UI에 다시 반영.
                     runOnUiThread {
 
-
                         refreshUI()
-
 
                     }
 
