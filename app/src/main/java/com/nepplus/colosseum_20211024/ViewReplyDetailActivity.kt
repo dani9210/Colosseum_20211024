@@ -3,6 +3,7 @@ package com.nepplus.colosseum_20211024
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.nepplus.colosseum_20211024.adapters.ReReplyAdapter
 import com.nepplus.colosseum_20211024.databinding.ActivityViewReplyDetailBinding
 import com.nepplus.colosseum_20211024.datas.ReplyData
 import com.nepplus.colosseum_20211024.utils.ServerUtil
@@ -17,6 +18,8 @@ class ViewReplyDetailActivity : BaseActivity() {
 
 
     val maReReplayList = ArrayList<ReplyData>()
+
+    lateinit var mReREplyadapter : ReReplyAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +45,11 @@ class ViewReplyDetailActivity : BaseActivity() {
         binding.selectedSideTitleTxt.text = mReplyData.selectedSide.title
         binding.contextTxt.text = mReplyData.content
 
+        getReplyDetailFromServer()
+
+        mReREplyadapter = ReReplyAdapter(mContext,R.layout.re_reply_list_item,maReReplayList)
+        binding.replyListView.adapter = mReREplyadapter
+
 
 
     }
@@ -63,6 +71,13 @@ class ViewReplyDetailActivity : BaseActivity() {
                     maReReplayList.add( ReplyData.getReplayDataFromJson( repliesArr.getJSONObject(i)))
 
 
+
+                }
+
+
+                runOnUiThread {
+
+                    mReREplyadapter.notifyDataSetChanged()
 
                 }
 
