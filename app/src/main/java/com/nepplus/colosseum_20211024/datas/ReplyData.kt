@@ -12,7 +12,9 @@ class ReplyData(
     var myDislike =false
     var replyCount = 0
 
-//    var user : UserData 댓글 적은 사람 정도=> 하위 데이터로.
+//    이 댓글을 적은 사람? UserData 클래스 활용
+
+    var user  = UserData()
 
 //    이 댓글이 선택한 진영?  SideData클래스 활용
 
@@ -55,8 +57,8 @@ class ReplyData(
 //     적은 사람도 파싱
 
 
-            val userobj = jsonObj.getJSONObject("user")
-            replyData.user = UserData.getUserdataFronJson(userobj)
+            val userObj = jsonObj.getJSONObject("user")
+            replyData.user = UserData.getUserdataFromJson(userObj)
 
             return replyData
 

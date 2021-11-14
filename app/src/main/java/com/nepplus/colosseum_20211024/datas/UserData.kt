@@ -11,7 +11,7 @@ class UserData {
 
     companion object {
 
-        fun getUserdataFromJson(jsonObj : JSONObject) : {
+        fun getUserdataFromJson(jsonObj : JSONObject) : UserData{
 
 
             val userData = UserData()
@@ -20,7 +20,7 @@ class UserData {
             userData.email = jsonObj.getString("email")
             userData.nickname = jsonObj.getString("nick_name")
 
-            return UserData
+            return userData
 
 
         }

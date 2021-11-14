@@ -14,20 +14,19 @@ import org.json.JSONObject
 class ViewTopicDetailActivity : BaseActivity() {
 
     lateinit var binding: ActivityViewTopicDetailBinding
-    lateinit var mTopicData : TopicData
+    lateinit var mTopicData: TopicData
 
     val mReplyList = ArrayList<ReplyData>()
 
-    lateinit var mReplyAdapter : ReplyAdapter
+    lateinit var mReplyAdapter: ReplyAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_view_topic_detail)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_view_topic_detail)
         setupEvents()
         setValues()
     }
-
 
 
     override fun setupEvents() {
@@ -35,7 +34,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 
         binding.addReplyBtn.setOnClickListener {
 
-            val myIntent = Intent(mContext,EditReplyActivity::class.java)
+            val myIntent = Intent(mContext, EditReplyActivity::class.java)
             startActivity(myIntent)
 
 
@@ -46,45 +45,47 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 //            첫번째 진영에 투표 => 새로 투표 현황 받아서 ->  UI 반영
 
-            ServerUtil.postrequestVote(mContext,mTopicData.sideList[0].id,object : ServerUtil.JsonResponseHandler{
-                override fun onResponse(jsonObj: JSONObject) {
+            ServerUtil.postrequestVote(
+                mContext,
+                mTopicData.sideList[0].id,
+                object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObj: JSONObject) {
 
 //                    새로 토론 상태 불러오기
 
-                    getTopicDetailFromServer()
+                        getTopicDetailFromServer()
 
-                }
-
-
-            })
-
-
-    }
-
-
-        binding.voteToSecondSideBtn.setOnClickListener {
-
-
-
-            ServerUtil.postrequestVote(mContext,mTopicData.sideList[1].id, object :ServerUtil.JsonResponseHandler{
-                override fun onResponse(jsonObj: JSONObject) {
-
-
-                    getTopicDetailFromServer()
-
-
-                }
+                    }
 
 
                 })
 
 
-            }
-
         }
 
 
+        binding.voteToSecondSideBtn.setOnClickListener {
 
+
+            ServerUtil.postrequestVote(
+                mContext,
+                mTopicData.sideList[1].id,
+                object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObj: JSONObject) {
+
+
+                        getTopicDetailFromServer()
+
+
+                    }
+
+
+                })
+
+
+        }
+
+    }
 
 
     override fun setValues() {
@@ -107,103 +108,93 @@ class ViewTopicDetailActivity : BaseActivity() {
 
         getTopicDetailFromServer()
 
-        mReplyAdapter = ReplyAdapter(mContext,R.layout.reply_list_item,mReplyList)
+        mReplyAdapter = ReplyAdapter(mContext, R.layout.reply_list_item, mReplyList)
         binding.replyListView.adapter = mReplyAdapter
-
-
 
 
     }
 
 
-    fun getTopicDetailFromServer(){
+    fun getTopicDetailFromServer() {
 
-        ServerUtil.getRequestTopicDetail(mContext, mTopicData.id,"NEW", object : ServerUtil.JsonResponseHandler {
+        ServerUtil.getRequestTopicDetail(
+            mContext,
+            mTopicData.id,
+            "NEW",
+            object : ServerUtil.JsonResponseHandler {
 
-            override fun onResponse (jsonObj : JSONObject)  {
+                override fun onResponse(jsonObj: JSONObject) {
 
-                //        댓글목록 JSONArray -> 파싱 -> mReplyList의 자료로 추가
+                    //        댓글목록 JSONArray -> 파싱 -> mReplyList의 자료로 추가
 
-                val dataobj = jsonObj.getJSONObject("data")
-                val topicObj = dataobj.getJSONObject("topic")
+                    val dataobj = jsonObj.getJSONObject("data")
+                    val topicObj = dataobj.getJSONObject("topic")
 
 //                topicObj (JSONObject) 를 새 TopicData로 파싱 => 최신정보 반영
 
-                mTopicData = TopicData.getTopicDataFromJSON(topicObj)
+                    mTopicData = TopicData.getTopicDataFromJSON(topicObj)
 
 //                새 mTopicData에 들어있는 데이터를 UI에 다시 반영.
-                runOnUiThread{
+                    runOnUiThread {
 
 
-                    refreshUI()
+                        refreshUI()
 
 
+                    }
 
-                }
 
-
-                val  repliesArr = topicObj.getJSONArray("replies")
+                    val repliesArr = topicObj.getJSONArray("replies")
 
 //                mReplyList에 이미 데이터가 들어있는 상태로 add => 같은 데이터가 여러번 추가됨. (중복 댓글)
 //                기존에 들어있던 댓글 목록을 전부 삭제하고나서, add 로 변경.
 
 
-                mReplyList.clear()
+                    mReplyList.clear()
 
 
-                for ( i in 0 until repliesArr.length()) {
+                    for (i in 0 until repliesArr.length()) {
 
 
-                    val replyObj = repliesArr.getJSONObject(i)
+                        val replyObj = repliesArr.getJSONObject(i)
 
 
 //                    JSONObject -> ReplyData 객체로 변환.
 
-                    val replyData = ReplyData.getReplayDataFromJson(replyObj)
+                        val replyData = ReplyData.getReplayDataFromJson(replyObj)
 
-                    mReplyList.add(replyData)
+                        mReplyList.add(replyData)
+
+
+                    }
+
+//                리스트뷰의 목록에 변경 => 어댑터 새로고침(UI 변경)
+
+                    runOnUiThread {
+
+                        mReplyAdapter.notifyDataSetChanged()
+                    }
 
 
                 }
 
-//                리스트뷰의 목록에 변경 => 어댑터 새로고침(UI 변경)
 
-                     runOnUiThread {
-
-                         mReplyAdapter.notifyDataSetChanged()
-                     }
-
-
-
-
-
-
-            }
-
-
-
-
-        })
-
+            })
 
 
     }
 
-    fun  refreshUI()  {
+    fun refreshUI() {
 
 //        득표 수 등은 자주 변경되는 데이터.
         binding.firstSideVoteCountTxt.text = "${mTopicData.sideList[0].voteCount}표"
         binding.secondSideVoteCountTxt.text = "${mTopicData.sideList[1].voteCount}표"
 
 
-
     }
 
 
-
-
-
-    }
+}
 
 
 

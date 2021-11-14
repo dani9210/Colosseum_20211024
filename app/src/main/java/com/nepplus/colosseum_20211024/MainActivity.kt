@@ -3,6 +3,8 @@ package com.nepplus.colosseum_20211024
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toolbar
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.nepplus.colosseum_20211024.adapters.TopicAdapter
@@ -27,6 +29,8 @@ class MainActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setupEvents()
         setValues()
+
+
     }
 
 

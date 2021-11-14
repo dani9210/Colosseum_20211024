@@ -5,13 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.nepplus.colosseum_20211024.R
 import com.nepplus.colosseum_20211024.ViewTopicDetailActivity
 import com.nepplus.colosseum_20211024.datas.ReplyData
-import com.nepplus.colosseum_20211024.datas.TopicData
 import com.nepplus.colosseum_20211024.utils.ServerUtil
 import org.json.JSONObject
 
@@ -43,6 +40,7 @@ class ReplyAdapter(
         val likeCountTxt = row.findViewById<TextView>(R.id.likeCountTxt)
         val dislikeCountTxt = row.findViewById<TextView>(R.id.dislikeCountTxt)
         val selectedSideTitleTxt = row.findViewById<TextView>(R.id.selectedSideTitleTxt)
+        val userNicknametxt = row.findViewById<TextView>(R.id.userNicknameTxt)
 
 
         replyCountTxt.text = "답글 : ${data.replyCount}개"
@@ -63,7 +61,6 @@ class ReplyAdapter(
 
             likeCountTxt.setTextColor(mContext.resources.getColor(R.color.gray))
             likeCountTxt.setBackgroundResource(R.drawable.gray_border_box)
-
 
 
         }
@@ -93,7 +90,7 @@ class ReplyAdapter(
 
 //        작성자 닉네임 보여주기
 
-
+        userNicknametxt.text = data.user.nickname
 
 
 //        좋아요 텍스트뷰 클릭 > 이 댓글에 대해 좋아요 호출
