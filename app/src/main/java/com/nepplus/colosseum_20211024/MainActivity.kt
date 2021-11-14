@@ -3,6 +3,7 @@ package com.nepplus.colosseum_20211024
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toolbar
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
@@ -99,6 +100,10 @@ class MainActivity : BaseActivity() {
 
         mTopicAdapter = TopicAdapter(mContext,R.layout.topic_list_item, mTopicList)
         binding.topicListView.adapter = mTopicAdapter
+
+//        부모 클래스인 BaseActivity가 backBtn 를 숨김처리.
+
+        backBtn.visibility = View.GONE
 
 
 
