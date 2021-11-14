@@ -149,10 +149,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 //                    JSONObject -> ReplyData 객체로 변환.
 
-                    val replyData = ReplyData( )
-                    replyData.id = replyObj.getInt("id")
-                    replyData.content = replyObj.getString("content")
-//                    댓글목록으로 추가
+                    val replyData = ReplyData.getReplayDataFromJson(replyObj)
 
                     mReplyList.add(replyData)
 
