@@ -105,6 +105,8 @@ class MainActivity : BaseActivity() {
 
         backBtn.visibility = View.GONE
 
+        profileBtn.visibility = View.VISIBLE
+
 
 
     }

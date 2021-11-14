@@ -1,5 +1,6 @@
 package com.nepplus.colosseum_20211024
 
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -13,6 +14,7 @@ abstract class BaseActivity : AppCompatActivity() {
     val mContext = this
 
     lateinit var backBtn : ImageView
+    lateinit var profileBtn : ImageView
 
 
 
@@ -35,6 +37,11 @@ abstract class BaseActivity : AppCompatActivity() {
         toolbar.setContentInsetsAbsolute(0,0)
 
         backBtn = defActionBar.customView.findViewById(R.id.backBtn)
+        profileBtn = defActionBar.customView.findViewById(R.id.profileBtn)
+
+        profileBtn.setOnClickListener {
+//            향후 작성 : 프로필화면으로 진입
+        }
 
         backBtn.setOnClickListener {
 
